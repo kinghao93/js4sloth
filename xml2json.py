@@ -22,7 +22,7 @@ def getAnnos(file_name="", prefix=''):
 
     for obj in anno.object:
 
-        cls = {'l_faster': 'C1', 'r_faster': 'C2'}[obj.name]
+        cls = {'positive': 'C1', 'negative': 'C3'}[obj.name]
         box = obj.bndbox
         x, y, width, height = int(box.xmin), int(box.ymin), int(box.xmax) - int(box.xmin), int(box.ymax) - int(box.ymin)
         item['annotations'] += [{
@@ -36,12 +36,13 @@ def getAnnos(file_name="", prefix=''):
 
 if __name__ == '__main__':
     annotations = []
-    anno_name = 'AR_001-550.json'
-    files = glob.glob('Annotations/AR_*.xml')
+    pDir = '/home/wanghao/Desktop/newVOC/'
+    anno_name = pDir+'/label_001-660.json'
+    files = glob.glob(pDir+'/VOC2007/Annotations/*.*')
     files = sorted(files)
     # print files.sort()
     for filename in files:
-        item = getAnnos(filename, prefix='TFS/JPEGImages/')
+        item = getAnnos(filename, prefix='VOC2007/JPEGImages/')
         print item
         print '-----------------'
         annotations += [item] #"xmls/AL_00001.xml"

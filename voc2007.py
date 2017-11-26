@@ -44,7 +44,8 @@ def save2Xml(item, pDir='.', imagePath='', imageCopy=False):
     # write the region of text on xml file
     for anno in item['annotations']:
         cls = anno['class']
-        cls = {'C1': 'l_faster', 'C2': 'r_faster'}[cls]
+        # cls = {'C1': 'l_faster', 'C2': 'r_faster'}[cls]
+        cls = {'C1': 'positive', 'C2': 'positive', 'C3': 'negative'}[cls]
         xmin = anno['x']
         ymin = anno['y']
         xmax = anno['width'] + anno['x']
@@ -112,8 +113,8 @@ if __name__ == '__main__':
     2. imagePath： 给出脚本可以找到image的路径, 
        因为靠json中提供的路径, 脚本并不能保证一定可以访问到相应的image
     """
-    jsonPath = '/home/wanghao/AL_5600-5710.json'
-    imagePath = '/home/wanghao/TFS/AL_1101-6000'
+    jsonPath = '/home/wanghao/Desktop/GPU-SERVER/label_001-660.json' # '/home/wanghao/AL_5600-5710.json'
+    imagePath = '/home/wanghao/Desktop/GPU-SERVER/sample' # '/home/wanghao/TFS/AL_1101-6000'
     # create voc2007 dirs
     createDirs(pDir)
     annos = parseFromFile(jsonPath)

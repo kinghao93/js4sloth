@@ -6,7 +6,7 @@ try:
 except:
     import cElementTree as ET # for 2.4
 
-from object_dict import object_dict 
+from object_dict import object_dict
 import re
 
 class XML2Dict(object):
@@ -31,8 +31,8 @@ class XML2Dict(object):
             old = node_tree[tag]
             if not isinstance(old, list):
                 node_tree.pop(tag)
-                node_tree[tag] = [old] # multi times, so change old dict to a list       
-            node_tree[tag].append(tree) # add the new one      
+                node_tree[tag] = [old] # multi times, so change old dict to a list
+            node_tree[tag].append(tree) # add the new one
 
         return  node_tree
 
@@ -46,13 +46,13 @@ class XML2Dict(object):
         result = re.compile("\{(.*)\}(.*)").search(tag)
         if result:
             print tag
-            value.namespace, tag = result.groups()    
+            value.namespace, tag = result.groups()
         return (tag, value)
 
     def parse(self, file):
         """parse a xml file to a dict"""
         f = open(file, 'r')
-        return self.fromstring(f.read()) 
+        return self.fromstring(f.read())
 
     def fromstring(self, s):
         """parse a string"""
@@ -79,5 +79,5 @@ if __name__ == '__main__':
     print r.result.count.n
 
     for data in r.result.data:
-        print data.id, data.name 
+        print data.id, data.name
     pprint(xml.parse('a'))
